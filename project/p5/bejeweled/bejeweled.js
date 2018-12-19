@@ -12,17 +12,14 @@ function setup(){
 
 }
 let grid = createGrid(8,6)
-let diameter= 10
+let diameter= 30
 
 function draw(){
     background('black')
-    fill('red')
-
     for(let i = 0;i<grid[0].length;i++){
         for(let j = 0; j<grid.length;j++){
-            ellipse(20+(i*50),20+(j*50),30,30)
+            fill(grid[i][j].colour)
+            ellipse(20+(i*50),20+(j*50),diameter,diameter)
         }
     }
-
-
-                    }
+}
