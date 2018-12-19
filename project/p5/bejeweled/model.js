@@ -1,10 +1,3 @@
-class Gem {
-    constructor(colour, special) {
-        this.colour = colour
-        this.special = special
-    }
-}
-
 function checkMove(grid, p, q) {
     // zien of deze move mag gebeuren
     swap(grid, p, q);
