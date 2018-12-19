@@ -3,5 +3,4 @@ class Gem {
         this.colour = colour
         this.special = special
     }
-    
 }
