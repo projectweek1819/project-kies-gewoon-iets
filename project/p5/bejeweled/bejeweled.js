@@ -7,32 +7,6 @@ function createGrid(rows,collumns){
     return grid
 }
 
-function fillGrid(grid){
-    for(var y = 0;y<height(grid);y++){
-        for(var x = 0;x<width(grid);x++){
-            if(grid[y][x].collour === ""){
-                switch (Math.random(5)+1){
-                    case 1:
-                        grid[y][x].collour === "red"
-                        break;
-                    case 2:
-                        grid[y][x].collour === "blue"
-                        break;
-                    case 3:
-                        grid[y][x].collour === "white"
-                        break;
-                    case 4:
-                        grid[y][x].collour === "yellow"
-                        break;
-                    case 5:
-                        grid[y][x].collour === "purple"
-                        break;
-                }
-            }
-        }
-    }
-}
-
 function setup(){
     createCanvas(400,400);
 
