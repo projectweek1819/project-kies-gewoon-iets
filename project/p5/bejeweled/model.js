@@ -1,4 +1,13 @@
-function horizontalChainAt(grid, position) {
+function swap(grid, p, q) {
+    console.log("called swap")
+    let temp = grid[p.y][p.x]
+    grid[p.y][p.x] = grid[q.y][q.x]
+    grid[q.y][q.x] = temp
+    return grid
+}
+
+
+/*function horizontalChainAt(grid, position) {
     let beginPosition = horizontalChainStartPositionAt(grid, position)
     let colour = grid[position.y][position.x]
     let result = 0
@@ -8,14 +17,6 @@ function horizontalChainAt(grid, position) {
         }
     }
     return result
-}
-
-
-function swap(grid, p, q) {
-    console.log("called swap")
-    let temp = grid[p.y][p.x]
-    grid[p.y][p.x] = grid[q.y][q.x]
-    grid[q.y][q.x] = temp
 }
 
 function verticalChainAt(grid, position) {
@@ -50,17 +51,51 @@ function verticalChainStartPositionAt(grid, position) {
         }
     }
     return {x: position.x, y: beginY}
+}*/
+
+function horizontalChainAt(grid,position){
+    var count = 1
+    var i = 1
+    while(grid[position.y][position.x] === grid[position.y][position.x+i]){
+        i++
+        count++
+    }
+    i = 1
+    while(grid[position.y][position.x] === grid[position.y][position.x-i]){
+        i++
+        count++
+    }
+    return count
+}
+
+function verticalChainAt(grid,position){
+    var count = 1
+    var i = 1
+    while(position.y-i >= 0 && grid[position.y][position.x] === grid[position.y-i][position.x]){
+        i++
+        count++ 
+    }
+    i = 1
+    while(position.y+i < grid.length && grid[position.y][position.x] === grid[position.y+i][position.x]){
+        i++
+        count++
+    }
+    return count
 }
 
 function checkMove(grid, p, q) {
     // zien of deze move mag gebeuren
     if((q.y == p.y+1 && q.x == p.x) || (q.y == p.y-1 && q.x == p.x) || (q.x == p.x+1 && q.y == p.y) || (q.x == p.x-1 && q.y == p.y)) {
-        swap(grid, p, q);
-        let h = horizontalChainAt(grid, {x:p.x, y: q.y});
-        let v = verticalChainAt(grid, {x:p.x, y: q.y});
-        if(h < 3 && v < 3){
-            swap(grid, q, p);
-        }
+        console.log(grid)
+        grid = swap(grid, p, q);
+        console.log(grid)
+        let h = horizontalChainAt(grid, {x:q.x, y: q.y});
+        let v = verticalChainAt(grid, {x:q.x, y: q.y});
+        console.log("h: "+h)
+        console.log("v: "+v)
+        /*if(h <= 3 || v <= 3){
+            grid = swap(grid, q, p);
+        }*/
     }
 
 }
@@ -81,7 +116,7 @@ function mousePressed(){
 }
 
 function translateMousePos(){
-    return {x:Math.floor(mouseX / (canvas.width/8)),y:Math.floor(mouseY / (canvas.height/8))}
+    return {x:Math.floor(mouseY / (canvas.width/8)),y:Math.floor(mouseX / (canvas.height/8))}
 }
 
 
