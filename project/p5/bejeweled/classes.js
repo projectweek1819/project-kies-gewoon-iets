@@ -8,8 +8,8 @@ class Gem {
 
 class Board {
     constructor(sourcePos, targetPos, score) {
-        this.sourceGem = sourceGem
-        this.targetGem = targetGem
+        this.sourcePos = sourcePos
+        this.targetPos = targetPos
         this.score = score
     }
 }
