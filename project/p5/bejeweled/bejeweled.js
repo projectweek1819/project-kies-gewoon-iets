@@ -40,21 +40,22 @@ function fillGrid(grid){
         }
     }
 }
+var board
+var canvas
 
 function setup(){
-    createCanvas(402,402);
+    canvas = createCanvas(402,402);
     noLoop()
+    board = new Board(null,null,0)
 }
 let grid = createGrid(8,8)
 fillGrid(grid)
-console.log(grid)
 let diameter= 30
 
 function populateBoard() {
     background('black')
     for(let i = 0;i<grid.length;i++){
         for(let j = 0; j<grid[0].length;j++){
-            console.log(grid[i][j])
             fill(grid[i][j].colour)
             ellipse(20+(i*50),20+(j*50),diameter,diameter)
         }
@@ -73,9 +74,7 @@ function restart(){
         }
         
     }
-    console.log(grid)
     fillGrid(grid)
-    console.log(grid)
     redraw()
 }
 var audio = new Audio('arcade_level_165_proud_music_preview.mp3');

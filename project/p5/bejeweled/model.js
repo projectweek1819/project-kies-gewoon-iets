@@ -16,25 +16,26 @@ function mousePressed(){
     if(mouseButton === LEFT && board.sourcePos == null){
         board.sourcePos = translateMousePos()
         
-    } else if (mouseButton == left) {
+    } else if (mouseButton == LEFT) {
         board.targetPos = translateMousePos()
     }
     if(mouseButton === RIGHT){
         board.sourcePos = null
         board.targetPos = null
     }
+    console.log(board)
 }
 
 function translateMousePos(){
-    return {x:Math.floor(mouseX / (canvas.width/8)),y:Math.floor(mouseX / (canvas.height/8))}
+    return {x:Math.floor(mouseX / (canvas.width/8)),y:Math.floor(mouseY / (canvas.height/8))}
 }
 
 
 function score(grid) {
     // een chain is vanaf 3 tot en met 5
     let res = 0;
-    let n = horizontalChainAt(grid, board.sourcePos);
-    let m = verticalChainAt(grid, board.sourcePos);
+    let n = horizontalChainAt(grid, board.targetPos);
+    let m = verticalChainAt(grid, board.targetPos);
 
     if(n >= 3){
         res += n;
