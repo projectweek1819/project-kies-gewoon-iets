@@ -12,3 +12,19 @@ function checkMove(grid, p, q) {
 
 }
 
+function mousePressed(){
+    if(mouseButton === LEFT && board.sourcePos == null){
+        board.sourcePos = translateMousePos()
+        
+    } else if (mouseButton == left) {
+        board.targetPos = translateMousePos()
+    }
+    if(mouseButton === RIGHT){
+        board.sourcePos = null
+        board.targetPos = null
+    }
+}
+
+function translateMousePos(){
+    return {x:Math.floor(mouseX / (canvas.width/8)),y:Math.floor(mouseX / (canvas.height/8))}
+}
