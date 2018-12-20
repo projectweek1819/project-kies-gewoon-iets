@@ -16,8 +16,8 @@ function height(grid) {
 }
 
 function fillGrid(grid){
-    for(var y = 0; y != height(grid); y++){
-        for(var x = 0; x != width(grid); x++){
+    for(var y = 0; y != grid.length; y++){
+        for(var x = 0; x != grid[0].length; x++){
             if(grid[y][x] == null || grid[y][x].colour === ""){
                 switch(Math.floor(Math.random()*6+1)){
                     case 1:
@@ -63,4 +63,28 @@ function populateBoard() {
 
 function draw(){
     populateBoard()
+}
+
+function restart(){
+    clear();
+    for(let a=0;a<grid[0].length;a++){
+        for(let b = 0;b<grid.length;b++){
+            grid[b][a]= null
+        }
+        
+    }
+    console.log(grid)
+    fillGrid(grid)
+    console.log(grid)
+    redraw()
+}
+var audio = new Audio('arcade_level_165_proud_music_preview.mp3');
+
+function music(){
+        audio.play();
+    
+    
+}
+function music2(){
+        audio.pause();
 }
