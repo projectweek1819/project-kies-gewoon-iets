@@ -28,3 +28,26 @@ function mousePressed(){
 function translateMousePos(){
     return {x:Math.floor(mouseX / (canvas.width/8)),y:Math.floor(mouseX / (canvas.height/8))}
 }
+
+
+function score(grid) {
+    // een chain is vanaf 3 tot en met 5
+    let res = 0;
+    let n = horizontalChainAt(grid, board.sourcePos);
+    let m = verticalChainAt(grid, board.sourcePos);
+
+    if(n >= 3){
+        res += n;
+    }
+    if(m >= 3){
+        res += m;
+    }
+    switch(parameter){
+        case 3: res += 3;
+            break
+        case 4: res += 4;
+            break;
+        case 5: res += 5;
+    }
+    return res;
+}
