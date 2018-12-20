@@ -45,7 +45,7 @@ function setup(){
     createCanvas(402,402);
     noLoop()
 }
-let grid = createGrid(6,8)
+let grid = createGrid(8,8)
 fillGrid(grid)
 console.log(grid)
 let diameter= 30
