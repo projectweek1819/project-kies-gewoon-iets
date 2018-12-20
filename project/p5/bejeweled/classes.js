@@ -7,7 +7,7 @@ class Gem {
 }
 
 class Board {
-    constructor(sourceGem, targetGem, score) {
+    constructor(sourcePos, targetPos, score) {
         this.sourceGem = sourceGem
         this.targetGem = targetGem
         this.score = score
