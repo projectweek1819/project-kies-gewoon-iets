@@ -5,3 +5,11 @@ class Gem {
         this.selected = selected
     }
 }
+
+class Board {
+    constructor(sourceGem, targetGem, score) {
+        this.sourceGem = sourceGem
+        this.targetGem = targetGem
+        this.score = score
+    }
+}
