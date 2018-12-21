@@ -14,7 +14,7 @@ function horizontalChainAt(grid,position){
         count++
     }
     i = 1
-    while(grid[position.y][position.x].colour === grid[position.y][position.x-i].colour){
+    while(position.x-i >= 0 && grid[position.y][position.x].colour === grid[position.y][position.x-i].colour){
         i++
         count++
     }
