@@ -97,3 +97,96 @@ function score(grid) {
     }
     return res;
 }
+
+function removeVerticalChainAt(grid,position){
+    var count = 1
+    var i = 1
+    var waarde1 = 0
+    var waarde2=0
+    while(position.y-i >= 0 && grid[position.y][position.x].colour === grid[position.y-i][position.x].colour){
+        i++
+        grid[position.y-i+1][position.x] = new Gem("orange",false,false)
+        waarde1++
+    }
+    if (waarde1>0){
+        grid[position.y-i+1][position.x] = new Gem("orange",false,false)
+    }
+    i = 1
+    while(position.y+i < grid.length && grid[position.y][position.x].colour === grid[position.y+i][position.x].colour){
+        i++
+        grid[position.y+i-1][position.x] = new Gem("orange",false,false)
+        waarde2++
+    }
+     if (waarde2>0){
+        grid[position.y+i-1][position.x] = new Gem("orange",false,false)
+    }
+    i = 1
+    return grid
+}
+
+function removeHorizontalChainAt(grid,position){
+    var count = 1
+    var i = 1
+    waarde1=0
+    waarde2=0
+    while( position.x+1 < grid[0].length &&grid[position.y][position.x].colour === grid[position.y][position.x+i].colour){
+        i++
+        grid[position.y][position.x+i-1] = new Gem("orange",false,false)
+        waarde1++
+    }
+    if(waarde1>0){
+        grid[position.y][position.x+i-1]= new Gem("orange",false,false)
+    }
+    i = 1
+    while(position.y+1 < grid.length &&position.x-i >= 0 && grid[position.y][position.x].colour === grid[position.y][position.x-i].colour){
+        i++
+        grid[position.y][position.x-i+1] = new Gem("orange",false,false)
+        waarde2++
+    }
+    if(waarde2>0){
+        grid[position.y][position.x-i+1]= new Gem("orange",false,false)
+    }
+    return grid
+}
+
+function removeChains(grid)
+{
+    let l = 0
+    let k =0
+    let klaar1 = false
+    let klaar2 = false
+ 
+    klaar1=false
+    while(!klaar1){
+    for(let p = 0;p<grid.length;p++){
+        let counter = verticalChainAt(grid,{x:l,y:p})
+        if (counter>2){
+            grid = removeVerticalChainAt(grid,{x:l,y:p})
+        }
+    }
+        l=l+1
+            if(l==grid[0].length){
+                klaar1 = true
+            }
+
+    }
+
+    l=0
+    klaar2=false
+    while(!klaar2){
+        for(let u = 0;u<grid[0].length;u++){
+            console.log("loop2 u: "+u+" l: "+l)
+            let counter = horizontalChainAt(grid,{x:l,y:u})
+            if (counter>2){
+                grid = removeHorizontalChainAt(grid,{x:l,y:u})
+            }
+        }
+                console.log("i am here")
+        l++
+        
+            if(l==grid.length){
+                klaar2 = true
+            }
+    }
+    return grid
+}

@@ -68,13 +68,14 @@ function draw(){
 
 function restart(){
     clear();
-    for(let a=0;a<grid[0].length;a++){
+    removeChains(grid);
+    /*for(let a=0;a<grid[0].length;a++){
         for(let b = 0;b<grid.length;b++){
             grid[b][a]= null
         }
         
     }
-    fillGrid(grid)
+    fillGrid(grid)*/
     redraw()
 }
 var audio = new Audio('arcade_level_165_proud_music_preview.mp3');
