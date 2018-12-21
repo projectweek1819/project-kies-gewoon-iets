@@ -6,52 +6,37 @@ function swap(grid, p, q) {
     return grid
 }
 
-
-function horizontalChainAt(grid, position) {
-    let beginPosition = horizontalChainStartPositionAt(grid, position)
-    let colour = grid[position.y][position.x].colour
-    let result = 0
-    for (let i = beginPosition.x; i != grid[0].length;i++) {
-        if (grid[position.y][i] === colour){
-            result++
-        }
+function horizontalChainAt(grid,position){
+    var count = 1
+    var i = 1
+    while(grid[position.y][position.x].colour === grid[position.y][position.x+i].colour){
+        i++
+        count++
     }
-    return result
+    i = 1
+    while(grid[position.y][position.x].colour === grid[position.y][position.x-i].colour){
+        i++
+        count++
+    }
+    return count
 }
 
-function verticalChainAt(grid, position) {
-    let beginPosition = verticalChainStartPositionAt(grid, position)
-    let colour = grid[position.y][position.x].colour
-    let result = 0
-    for (let i = beginPosition.y; i != grid.length;i++) {
-        if (grid[i][position.x] === colour){
-            result++
-        }
+function verticalChainAt(grid,position){
+    var count = 1
+    var i = 1
+    while(position.y-i >= 0 && grid[position.y][position.x].colour === grid[position.y-i][position.x].colour){
+        i++
+        count++ 
     }
-    return result
+    i = 1
+    while(position.y+i < grid.length && grid[position.y][position.x].colour === grid[position.y+i][position.x].colour){
+        i++
+        count++
+    }
+    return count
 }
 
-function horizontalChainStartPositionAt(grid, position) {
-    let colour = grid[position.y][position.x].colour
-    let beginX = -1
-    for(let i = position.x; i>=0; i--){
-        if (grid[position.y][i].colour === colour){
-            beginX = i
-        }
-    }
-    return {x: beginX, y: position.y}
-}
 
-function verticalChainStartPositionAt(grid, position) {
-    let colour = grid[position.y][position.x].colour
-    let beginY = -1
-    for(let i = position.y; i>=0; i--){
-        if (grid[i][position.x].colour === colour){
-            beginY = i
-        }
-    }
-    return {x: position.x, y: beginY}
-}
 function checkMove(grid, p, q) {
     // zien of deze move mag gebeuren
     console.log(p, q)
