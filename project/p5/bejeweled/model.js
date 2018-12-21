@@ -48,9 +48,9 @@ function checkMove(grid, p, q) {
         let v = verticalChainAt(grid, {x:q.x, y: q.y});
         console.log("h: "+h)
         console.log("v: "+v)
-        /*if(h <= 3 || v <= 3){
+        if(h < 3 && v < 3){
             grid = swap(grid, q, p);
-        }*/
+        }
     }
 
 }
