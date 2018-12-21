@@ -9,7 +9,7 @@ function swap(grid, p, q) {
 function horizontalChainAt(grid,position){
     var count = 1
     var i = 1
-    while(grid[position.y][position.x].colour === grid[position.y][position.x+i].colour){
+    while(position.x+i < grid[0].length && grid[position.y][position.x].colour === grid[position.y][position.x+i].colour){
         i++
         count++
     }
@@ -105,20 +105,20 @@ function removeVerticalChainAt(grid,position){
     var waarde2=0
     while(position.y-i >= 0 && grid[position.y][position.x].colour === grid[position.y-i][position.x].colour){
         i++
-        grid[position.y-i+1][position.x] = new Gem("orange",false,false)
+        grid[position.y-i+1][position.x] = new Gem("",false,false)
         waarde1++
     }
     if (waarde1>0){
-        grid[position.y-i+1][position.x] = new Gem("orange",false,false)
+        grid[position.y-i+1][position.x] = new Gem("",false,false)
     }
     i = 1
     while(position.y+i < grid.length && grid[position.y][position.x].colour === grid[position.y+i][position.x].colour){
         i++
-        grid[position.y+i-1][position.x] = new Gem("orange",false,false)
+        grid[position.y+i-1][position.x] = new Gem("",false,false)
         waarde2++
     }
      if (waarde2>0){
-        grid[position.y+i-1][position.x] = new Gem("orange",false,false)
+        grid[position.y+i-1][position.x] = new Gem("",false,false)
     }
     i = 1
     return grid
@@ -131,20 +131,20 @@ function removeHorizontalChainAt(grid,position){
     waarde2=0
     while( position.x+1 < grid[0].length &&grid[position.y][position.x].colour === grid[position.y][position.x+i].colour){
         i++
-        grid[position.y][position.x+i-1] = new Gem("orange",false,false)
+        grid[position.y][position.x+i-1] = new Gem("",false,false)
         waarde1++
     }
     if(waarde1>0){
-        grid[position.y][position.x+i-1]= new Gem("orange",false,false)
+        grid[position.y][position.x+i-1]= new Gem("",false,false)
     }
     i = 1
     while(position.y+1 < grid.length &&position.x-i >= 0 && grid[position.y][position.x].colour === grid[position.y][position.x-i].colour){
         i++
-        grid[position.y][position.x-i+1] = new Gem("orange",false,false)
+        grid[position.y][position.x-i+1] = new Gem("",false,false)
         waarde2++
     }
     if(waarde2>0){
-        grid[position.y][position.x-i+1]= new Gem("orange",false,false)
+        grid[position.y][position.x-i+1]= new Gem("",false,false)
     }
     return grid
 }
@@ -176,9 +176,9 @@ function removeChains(grid)
     while(!klaar2){
         for(let u = 0;u<grid[0].length;u++){
             console.log("loop2 u: "+u+" l: "+l)
-            let counter = horizontalChainAt(grid,{x:l,y:u})
+            let counter = horizontalChainAt(grid,{x:u,y:l})
             if (counter>2){
-                grid = removeHorizontalChainAt(grid,{x:l,y:u})
+                grid = removeHorizontalChainAt(grid,{x:u,y:l})
             }
         }
                 console.log("i am here")
