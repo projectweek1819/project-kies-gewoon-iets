@@ -7,9 +7,9 @@ function swap(grid, p, q) {
 }
 
 
-/*function horizontalChainAt(grid, position) {
+function horizontalChainAt(grid, position) {
     let beginPosition = horizontalChainStartPositionAt(grid, position)
-    let colour = grid[position.y][position.x]
+    let colour = grid[position.y][position.x].colour
     let result = 0
     for (let i = beginPosition.x; i != grid[0].length;i++) {
         if (grid[position.y][i] === colour){
@@ -24,7 +24,7 @@ function verticalChainAt(grid, position) {
     let colour = grid[position.y][position.x].colour
     let result = 0
     for (let i = beginPosition.y; i != grid.length;i++) {
-        if (grid[i][position.x].colour === colour){
+        if (grid[i][position.x] === colour){
             result++
         }
     }
@@ -43,48 +43,18 @@ function horizontalChainStartPositionAt(grid, position) {
 }
 
 function verticalChainStartPositionAt(grid, position) {
-    let colour = grid[position.y][position.x]
+    let colour = grid[position.y][position.x].colour
     let beginY = -1
     for(let i = position.y; i>=0; i--){
-        if (grid[i][position.x] === colour){
+        if (grid[i][position.x].colour === colour){
             beginY = i
         }
     }
     return {x: position.x, y: beginY}
-}*/
-
-function horizontalChainAt(grid,position){
-    var count = 1
-    var i = 1
-    while(grid[position.y][position.x] === grid[position.y][position.x+i]){
-        i++
-        count++
-    }
-    i = 1
-    while(grid[position.y][position.x] === grid[position.y][position.x-i]){
-        i++
-        count++
-    }
-    return count
 }
-
-function verticalChainAt(grid,position){
-    var count = 1
-    var i = 1
-    while(position.y-i >= 0 && grid[position.y][position.x] === grid[position.y-i][position.x]){
-        i++
-        count++ 
-    }
-    i = 1
-    while(position.y+i < grid.length && grid[position.y][position.x] === grid[position.y+i][position.x]){
-        i++
-        count++
-    }
-    return count
-}
-
 function checkMove(grid, p, q) {
     // zien of deze move mag gebeuren
+    console.log(p, q)
     if((q.y == p.y+1 && q.x == p.x) || (q.y == p.y-1 && q.x == p.x) || (q.x == p.x+1 && q.y == p.y) || (q.x == p.x-1 && q.y == p.y)) {
         console.log(grid)
         grid = swap(grid, p, q);
@@ -106,6 +76,7 @@ function mousePressed(){
         
     } else if (mouseButton == LEFT) {
         board.targetPos = translateMousePos()
+        console.log(grid    )
         checkMove(grid, board.sourcePos, board.targetPos)
         redraw()
     }
