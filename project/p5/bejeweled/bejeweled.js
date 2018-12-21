@@ -44,7 +44,7 @@ var board
 var canvas
 
 function setup(){
-    canvas = createCanvas(402,402);
+    canvas = createCanvas(402,500);
     noLoop()
     board = new Board(null,null,0)
 }
@@ -64,6 +64,11 @@ function populateBoard() {
 
 function draw(){
     populateBoard()
+    fill(255);
+    textStyle(BOLD);
+    textSize(25);
+    text("Your score:  " + board.score.toString(), 200,450);
+
 }
 
 function restart(){

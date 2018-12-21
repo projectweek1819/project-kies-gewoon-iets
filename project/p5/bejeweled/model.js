@@ -95,7 +95,7 @@ function score(grid) {
             break;
         case 5: res += 5;
     }
-    return res;
+    board.score = res;;
 }
 
 function removeVerticalChainAt(grid,position){
